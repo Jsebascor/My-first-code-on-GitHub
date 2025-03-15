@@ -1,0 +1,46 @@
+import numpy as np
+import matplotlib.pyplot as plt 
+
+print("Approximation of π")
+print("Number of terms on the sum: ")
+L = int(input ())
+e=[]
+a=[]
+g=[]
+def funcc(n):
+    k=0
+    for x in range (n):
+        k += ((-1)**(x+2))/((2*(x+1))-1)
+    return (4*k)
+def decc(r):
+    x = 0
+    c = abs(funcc(r)-np.pi)
+    m=[]
+    for x in range (1000):
+      m.append(c*(10**x))
+      x=x+1
+      if m[x-1] > 1:
+            break
+    return(x-1)
+for x in range (L):
+    e.append(x+1)
+    a.append(decc(x+1))
+    g.append(funcc(x+1))
+plt.plot([np.log(e[x-1]) for x in e], a)
+plt.grid()
+plt.title("π = "+str(funcc(L)))
+plt.xlabel("Terms of the sum (logarithmic)")
+plt.ylabel("Correct digits of π")
+plt.show()
+plt.plot(e, g)
+plt.plot(e, [np.pi for e in e])
+plt.title("π = "+str(funcc(L)))
+plt.xlabel("Terms of the sum")
+plt.ylabel("Calculated value of π")
+plt.scatter([], [], color="blue", label="π approximation", s=100)
+plt.scatter([], [], color="orange", label="π real value", s=100)
+plt.legend(loc="upper right")
+plt.grid()
+plt.show()
+print("Estimated value of π :"+str(funcc(L)))
+print("Deviation with respect to π real value:"+ str(abs(funcc(L)-np.pi)))
