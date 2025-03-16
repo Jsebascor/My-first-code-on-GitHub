@@ -16,12 +16,12 @@ def decc(r):
     x = 0
     c = abs(funcc(r)-np.pi)
     m=[]
-    for x in range (1000):
+    while 1==1:
       m.append(c*(10**x))
       x=x+1
       if m[x-1] > 1:
             break
-    return(x-1)
+    return(x-2)
 for x in range (L):
     e.append(x+1)
     a.append(decc(x+1))
